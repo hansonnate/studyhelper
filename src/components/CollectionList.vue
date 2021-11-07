@@ -6,13 +6,16 @@
         <p>{{item.book}} {{item.chapter}}:{{item.verse}}</p>
         <p>"{{item.content}}"</p>
         <div class="notes">
-          <p style="text-align:left">Notes: <button id="addNoteButton">Add a note</button></p>
-          <form v-on:submit.prevent="addNote">
-            <input v-model="addedTopic" placeholder="Topic">
-            <textarea v-model="addedNote"></textarea>
-            <br />
-            <button type="submit">Submit</button>
+          <form v-on:submit.prevent="addNote(item.id, item.book, item.chapter, item.verse)">
+            <input id="topicinput" v-model="addedTopic" placeholder="Note Topic">
+            <button type="submit">Save Note</button><br />
+            <textarea v-model="addedNote" placeholder="Type Thoughts Here"></textarea><br />
           </form>
+          <p style="text-align:left">Notes: </p>
+          <div v-for="note in notes" :key="note.id">
+            <p>{{ note.topic }}</p>
+            <p>{{ note.note }}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -24,10 +27,21 @@
 export default {
   name: 'CollectionList',
   props: {
-    collection: Array
+    collection: Array,
+    notes: Array,
+    addedNote: String,
+    addedTopic: String,
   },
   methods: {
-
+    getNotes() {
+      return this.$root.$data.notes;
+    },
+    addNote(id, book, chapter, verse) {
+      this.$root.$data.addNote(id, book, chapter, verse);
+      this.$root.$data.addedNote = this.addedNote;
+      this.$root.$data.addedTopic = this.addedTopic;
+      this.$root.$data.number = this.$root.$data.number + 1;
+    }
   }
 }
 </script>
@@ -52,6 +66,15 @@ export default {
 }
 .info {
   padding: 10px 30px;
+}
+textarea {
+  width: 800px;
+  height: 100px;
+
+}
+#topicinput {
+  margin-bottom: 5px;
+  margin-right: 2px;
 }
 
 </style>
