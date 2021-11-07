@@ -27,7 +27,7 @@
     <router-view/>
     <v-footer>
       <div class="footer">
-        <p>© 2021 Study Helper, inc. ALL RIGHTS RESERVED. PROVO, UT <br> <a href="/">Githublink</a></p>
+        <p>© 2021 Study Helper, inc. ALL RIGHTS RESERVED. PROVO, UT <br> <a href="https://github.com/hansonnate/studyhelper">Githublink</a></p>
       </div>
     </v-footer>
   </div>
