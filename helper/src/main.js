@@ -18,20 +18,27 @@ let data = {
       book: book,
       chapter: chapter,
       verse: verse,
-      content: content
+      content: content,
+      notes: []
+      //note: "",
+      //topic: "",
     });
   },
-  addNote(id, book, chapter, verse) {
-    if (!(this.number in this.notes))
-      Vue.set(this.notes, this.number, new Array);
-    this.notes[this.number].push({
-      id: id,
-      book: book,
-      chapter: chapter,
-      verse: verse,
-      note: this.addedNote,
-      topic: this.addedTopic
-    });
+  addNote(id, note, topic) {
+    for (let i = 0; i < this.collection.length; i++) {
+      if (this.collection[i].id === id) {
+        let newNote = {
+          id: "note" + i.toString(),
+          note: note,
+          topic: topic,
+        }
+        this.collection[i].notes.push(newNote);
+        //this.collection[i].note = note;
+        //this.collection[i].topic = topic;
+        //this.collection[i]['note'] = note;
+        //this.collection[i].topic = topic;
+      }
+    }
   }
 }
 
