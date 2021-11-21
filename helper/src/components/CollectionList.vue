@@ -5,15 +5,15 @@
       <div class="info">
         <p>{{item.book}} {{item.chapter}}:{{item.verse}}</p>
         <p>"{{item.content}}"</p>
-        <div class="notes">
+        <div class="addNote">
           <form v-on:submit.prevent="addNote(item.id, item.note, item.topic)">
             <input class="topicinput" v-model="item.topic" placeholder="Note Topic">
             <button type="submit">Save Note</button><br/>
             <textarea v-model="item.note" placeholder="Type Thoughts Here"></textarea><br />
           </form>
-          <p style="text-align:left">Notes: </p>
-          <div v-for="note in item.notes" :key="note.id">
-            <p>{{note.topic}}: "{{note.note}}"</p>
+          <p style="text-align:left"><u>Notes</u></p>
+          <div class="notes" v-for="note in item.notes" :key="note.id">
+            <p><i>{{note.topic}}:</i> "{{note.note}}"</p>
           </div>
         </div>
       </div>
@@ -75,6 +75,9 @@ textarea {
 .topicinput {
   margin-bottom: 5px;
   margin-right: 2px;
+}
+.notes p {
+  text-align: left;
 }
 
 </style>

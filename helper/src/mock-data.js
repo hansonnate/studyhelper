@@ -51,6 +51,32 @@ let mock = [{
     note: "",
     topic: "",
   },
+  {
+    id: "kdsfj3",
+    book: "3 Nephi",
+    chapter: "11",
+    verse: "38",
+    content: "And again I say unto you, ye must repent, and be baptized in my name, and become as a little child, or ye can in nowise inherit the kingdom of God.",
+    note: "",
+    topic: "",
+  },
+  {
+    id: "kclkjv",
+    book: "Mosiah",
+    chapter: "3",
+    verse: "9",
+    content: "And lo, he cometh unto his own, that salvation might come unto the children of men even through faith on his name; and even after all this they shall consider him a man, and say that he hath a devil, and shall scourge him, and shall crucify him.",
+    note: "",
+    topic: "",
+  },
+  {
+    id: "ejfs09fj",
+    book: "Alma",
+    chapter: "5",
+    verse: "39",
+    content: "And now if ye are not the asheep of the good shepherd, of what fold are ye? Behold, I say unto you, that the devil is your shepherd, and ye are of his fold; and now, who can deny this? Behold, I say unto you, whosoever denieth this is a liar and a child of the devil.",
+    topic: "",
+  },
 
 ]
 
