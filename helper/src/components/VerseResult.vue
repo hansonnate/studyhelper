@@ -8,6 +8,7 @@
       </div>
       <div class="buttonholder">
         <button class="auto" v-on:click="addToCollection(verse.id, verse.book, verse.chapter, verse.verse, verse.content)">Add to Collection</button>
+        <button class="auto" v-on:click="addToDatabase(verse.id, verse.book, verse.chapter, verse.verse, verse.content)">Add to Database</button>
       </div>
     </div>
   </div>
@@ -23,6 +24,20 @@ export default {
   methods: {
     addToCollection(id, book, chapter, verse, content) {
       this.$root.$data.addToCollection(id, book, chapter, verse, content);
+    },
+    async addToDatabase(id, book, chapter, verse, content) {
+      try {
+        await axios.post("/api/verses", {
+          id: id,
+          book: book,
+          chapter: chapter,
+          verse: verse,
+          content: content,
+        });
+        return true;
+      } catch (error) {
+        console.log(error);
+      }
     }
   }
 }
