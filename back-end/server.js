@@ -11,6 +11,7 @@ const mongoose = require('mongoose');
 
 //connect to the database
 mongoose.connect('mongodb://localhost:27017/study', {
+  useUnifiedTopology: true,
   useNewUrlParser: true
 });
 
@@ -21,6 +22,20 @@ const verseSchema = new mongoose.Schema({
   chapter: String,
   verse: String,
   content: String,
+<<<<<<< HEAD
+=======
+  notes: Array,
+});
+
+// create a virtual paramter that turns the default _id field into id
+verseSchema.virtual('id')
+  .get(function() {
+    return this._id.toHexString();
+  });
+
+verseSchema.set('toJSON', {
+  virtuals: true
+>>>>>>> 6e029b646a1239964464508f7782d6416b7f9fb5
 });
 
 const Verse = mongoose.model('Verse', verseSchema);
