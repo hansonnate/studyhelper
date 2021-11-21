@@ -22,9 +22,6 @@ const verseSchema = new mongoose.Schema({
   chapter: String,
   verse: String,
   content: String,
-<<<<<<< HEAD
-=======
-  notes: Array,
 });
 
 // create a virtual paramter that turns the default _id field into id
@@ -35,7 +32,6 @@ verseSchema.virtual('id')
 
 verseSchema.set('toJSON', {
   virtuals: true
->>>>>>> 6e029b646a1239964464508f7782d6416b7f9fb5
 });
 
 const Verse = mongoose.model('Verse', verseSchema);
