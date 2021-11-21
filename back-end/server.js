@@ -21,26 +21,23 @@ const verseSchema = new mongoose.Schema({
   chapter: String,
   verse: String,
   content: String,
-  notes: Array,
-});
-
-verseSchema.set('toJSON', {
-  virtuals: true
 });
 
 const Verse = mongoose.model('Verse', verseSchema);
 
 // Create a new item to add to collection
 app.post('/api/verses', async (req, res) => {
+  console.log('Creating Verse');
   const verse = new Verse({
     id: req.body.id,
     book: req.body.book,
     chapter: req.body.chapter,
     verse: req.body.verse,
     content: req.body.content,
-    notes: [],
   });
   try {
+    console.log("Adding Verse");
+   // console.log(verse);
     await verse.save();
     res.send(verse);
   } catch (error) {
@@ -60,4 +57,4 @@ app.post('/api/verses', async (req, res) => {
 //   }
 // });
 
-app.listen(3000, () => console.log('Server listening on port 3000!'));
+app.listen(3030, () => console.log('Server listening on port 3030!'));

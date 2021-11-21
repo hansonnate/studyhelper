@@ -8,7 +8,6 @@
       </div>
       <div class="buttonholder">
         <button class="auto" v-on:click="addToCollection(verse.id, verse.book, verse.chapter, verse.verse, verse.content)">Add to Collection</button>
-        <button class="auto" v-on:click="addToDatabase(verse.id, verse.book, verse.chapter, verse.verse, verse.content)">Add to Database</button>
       </div>
     </div>
   </div>
@@ -16,6 +15,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   name: 'VerseResult',
   props: {
@@ -34,7 +34,6 @@ export default {
           verse: verse,
           content: content,
         });
-        return true;
       } catch (error) {
         console.log(error);
       }
