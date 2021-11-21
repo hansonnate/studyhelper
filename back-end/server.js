@@ -11,6 +11,7 @@ const mongoose = require('mongoose');
 
 //connect to the database
 mongoose.connect('mongodb://localhost:27017/study', {
+  useUnifiedTopology: true,
   useNewUrlParser: true
 });
 
@@ -23,6 +24,12 @@ const verseSchema = new mongoose.Schema({
   content: String,
   notes: Array,
 });
+
+// create a virtual paramter that turns the default _id field into id
+verseSchema.virtual('id')
+  .get(function() {
+    return this._id.toHexString();
+  });
 
 verseSchema.set('toJSON', {
   virtuals: true
@@ -60,4 +67,4 @@ app.post('/api/verses', async (req, res) => {
 //   }
 // });
 
-app.listen(3000, () => console.log('Server listening on port 3000!'));
+app.listen(3030, () => console.log('Server listening on port 3030!'));

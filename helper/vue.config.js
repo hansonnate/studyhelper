@@ -1,6 +1,6 @@
 module.exports = {
   devServer: {
     disableHostCheck: true,
-    proxy: 'http://localhost:3000'
+    proxy: 'http://localhost:3030'
   }
 }
