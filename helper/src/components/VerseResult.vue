@@ -7,7 +7,7 @@
         <p>"{{verse.content}}"</p>
       </div>
       <div class="buttonholder">
-        <button class="auto" v-on:click="addToCollection(verse.id, verse.book, verse.chapter, verse.verse, verse.content)">Add to Collection</button>
+        <button class="auto" v-on:click="addToDatabase(verse.id, verse.book, verse.chapter, verse.verse, verse.content)">Add to Collection</button>
       </div>
     </div>
   </div>

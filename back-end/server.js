@@ -22,17 +22,9 @@ const verseSchema = new mongoose.Schema({
   chapter: String,
   verse: String,
   content: String,
+  notes: Array,
 });
 
-// create a virtual paramter that turns the default _id field into id
-verseSchema.virtual('id')
-  .get(function() {
-    return this._id.toHexString();
-  });
-
-verseSchema.set('toJSON', {
-  virtuals: true
-});
 
 const Verse = mongoose.model('Verse', verseSchema);
 
@@ -45,6 +37,7 @@ app.post('/api/verses', async (req, res) => {
     chapter: req.body.chapter,
     verse: req.body.verse,
     content: req.body.content,
+    notes: [],
   });
   try {
     console.log("Adding Verse");
@@ -57,15 +50,50 @@ app.post('/api/verses', async (req, res) => {
   }
 });
 
-// // Get a list of all of the items in the collection
-// app.get('/api/items', async (req, res) => {
-//   try {
-//     let items = await Item.find();
-//     res.send(items);
-//   } catch (error) {
-//     console.log(error);
-//     res.sendStatus(500);
-//   }
-// });
+ // Get a list of all of the items in the collection
+ app.get('/api/verses', async (req, res) => {
+   try {
+     let items = await Verse.find();
+     res.send(items);
+   } catch (error) {
+     console.log(error);
+     res.sendStatus(500);
+   }
+ });
+
+//Add a note
+app.put('/api/verses/:id', async (req, res) => {
+  try {
+    let item = await Verse.findOne({
+      id: req.params.id
+    });
+    console.log(req.body.topic);
+    newNote = {
+      note: req.body.note,
+      topic: req.body.topic
+    }
+    item.notes.push(newNote);
+    await item.save();
+    res.sendStatus(200);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+});
+
+//Delete a Verse
+app.delete('/api/verses/:id', async (req, res) => {
+  console.log("Deleting: " + req.params.id);
+  try {
+    await Verse.deleteOne({
+      _id: req.params.id
+    });
+    res.sendStatus(200);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+});
+
 
 app.listen(3030, () => console.log('Server listening on port 3030!'));
